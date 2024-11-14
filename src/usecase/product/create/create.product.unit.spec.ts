@@ -31,11 +31,17 @@ describe("Unit test create product", () => {
             name: input.name,
             price: input.price
         })
-
-
-
-
     })
+
+    it("Should throw an error when creating a product", async () => {
+
+        const productRepository = MockRepository();
+        productRepository.create.mockRejectedValue(new Error("Error creating product"));
+
+        const usecase = new CreateProductUseCase(productRepository);
+
+        await expect(usecase.execute(input)).rejects.toThrow("Error creating product")
+    });
 
 
 })
