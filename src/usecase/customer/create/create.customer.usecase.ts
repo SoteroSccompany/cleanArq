@@ -28,6 +28,7 @@ export default class CustomerCreateUseCase {
                 street: customer.address.street,
                 city: customer.address.city,
                 number: customer.address.number,
+                state: customer.address.state,
                 zip: customer.address.zipcode
             }
         }

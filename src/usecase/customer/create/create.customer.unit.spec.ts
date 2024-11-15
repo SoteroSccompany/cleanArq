@@ -37,6 +37,7 @@ describe("Unit test create customer use case", () => {
                 street: input.address.street,
                 city: input.address.city,
                 number: input.address.number,
+                state: input.address.state,
                 zip: input.address.zip
             }
         });
