@@ -2,6 +2,7 @@ import { canTreatArrayAsAnd } from "sequelize/types/utils";
 import ProductRepositoryInterface from "../../../domain/product/repository/product-repository.interface";
 import { InputProductListDto, OutputProductListDto } from "./list.product.dto";
 import Product from "../../../domain/product/entity/product";
+import ProductInterface from "../../../domain/product/entity/product.interface";
 
 
 
@@ -20,18 +21,21 @@ export default class ListProductUseCase {
             if (products.length === 0) {
                 throw new Error("Products not found");
             }
-            return {
-                products: products.map(product => {
-                    return new Product(product.id, product.name, product.price);
-                })
-            }
-
-
+            return OutputMapper.toOutPut(products);
         } catch (error) {
             throw new Error((error as Error).message);
         }
     }
+}
 
-
-
+class OutputMapper {
+    static toOutPut(products: ProductInterface[]): OutputProductListDto {
+        return {
+            products: products.map(product => ({
+                id: product.id,
+                name: product.name,
+                price: product.price
+            }))
+        }
+    }
 }
