@@ -47,8 +47,16 @@ describe("Unit test list products", () => {
         const output = await usecase.execute({});
 
         expect(output.products.length).toBe(2);
-        expect(output.products[0]).toStrictEqual(product1);
-        expect(output.products[1]).toStrictEqual(product2);
+        expect(output.products[0]).toStrictEqual({
+            id: product1.id,
+            name: product1.name,
+            price: product1.price
+        });
+        expect(output.products[1]).toStrictEqual({
+            id: product2.id,
+            name: product2.name,
+            price: product2.price
+        });
 
     });
 

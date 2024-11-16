@@ -26,7 +26,15 @@ describe("Unit test list products", () => {
 
         const output = await usecase.execute({});
 
-        expect(output.products).toStrictEqual([product1, product2]);
+        expect(output.products).toStrictEqual([{
+            id: product1.id,
+            name: product1.name,
+            price: product1.price
+        }, {
+            id: product2.id,
+            name: product2.name,
+            price: product2.price
+        }]);
     });
 
     it("Should throw error when product not found", async () => {
