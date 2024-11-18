@@ -150,8 +150,9 @@ describe("E2e test for product", () => {
         expect(response.status).toBe(200);
 
         const input2 = {
-            id: response.body.id,
+            id: response.body.id
         }
+
         const response2 = await request(app)
             .put(`/product/${input2.id}`)
             .send(input2);
